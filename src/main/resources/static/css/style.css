@@ -1,0 +1,49 @@
+body{
+    background-color: #F7F7F7;
+    overflow-x: hidden;
+}
+
+header{
+    background: url("../media/header.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    min-height: 100px;
+    width: 100%;
+    color: #f7f7f7;
+    text-align: center;
+}
+
+header a{
+    color: #f7f7f7;
+}
+
+header a :hover{
+    color: #f7f7f7;
+    text-decoration: #F7F7F7 underline;
+}
+
+header li{
+    margin-top: 4px;
+}
+
+input[type="number"]{
+    width: 200px;
+    border: 1px solid black;
+}
+
+main{
+    margin-left: 15px;
+}
+
+.scrollBox{
+    /*overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;*/
+   /* height: 120px;*/
+    overflow: visible;
+    border: 1px solid black;
+    width: 200px;
+    min-height: 20px;
+}

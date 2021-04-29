@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Natural 20</title>
+
+    <script src="scripts/default.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+    <noscript>Your browser does not support JavaScript!</noscript>
+
+</head>
+<body>
+
+<header>
+    <h1>Natural 20 for <span th:utext="${name}"></span><i class='fab fa-d-and-d'></i></h1>
+    <nav class="navbar navbar-expand-sm bg-dark">
+
+        <!-- Links -->
+        <ul class="navbar-nav">
+
+            <a class="navbar-brand" href="/">
+                <img src="media/icon.png" alt="Logo" style="width:40px;">
+            </a>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/dicethrower">Dice Thrower</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/npc">NPC Generator</a>
+            </li>
+
+        </ul>
+
+    </nav>
+</header>
+
+<aside>
+
+</aside>
+
+<main>
+
+    <h2>
+        Dice Thrower
+    </h2>
+
+    <form action="#" th:action="@{/dicethrower}" th:object="${dicethrower}" method="post">
+
+        <div class="row">
+            <div class="col-sm-1"><label>Dice Sides</label></div>
+            <div class="col-sm-1"><input type="number" id="diceSides" value="20" min="2" th:field="*{diceSides}"></div>
+        </div>
+
+        <br/>
+
+        <div class="row">
+            <div class="col-sm-1"><label>Dice Amount</label></div>
+            <div class="col-sm-1"><input type="number" id="diceAmount" value="1" min="1" th:field="*{diceAmount}"></div>
+        </div>
+
+        <br/>
+
+        <div class="row">
+            <div class="col-sm-1"><label>Modifier</label></div>
+            <div class="col-sm-1"><input type="number" id="diceModifier" value="0" th:field="*{diceModifier}"></div>
+        </div>
+
+        <br/>
+
+        <div class="row">
+            <div class="col-sm-1"><label>Calculate Sum</label></div>
+            <div class="col-sm-1"><input type="checkbox" id="calculateSum" th:field="*{calculateSum}"></div>
+        </div>
+
+        <br/>
+
+        <div class="row">
+            <div class="col-sm-1"><label>Throw Dice</label></div>
+            <div class="col-sm-2 ">
+                <button id="diceThrower" class="btn btn-light" type="submit"><i class='fas fa-dice-d20'></i></button>
+            </div>
+        </div>
+
+        <br/>
+
+    </form>
+
+    <div class="row">
+
+        <div class="col-sm-1">Result</div>
+
+        <div class="col-sm-2" >
+            <div id="diceResult" class="scrollBox" th:object="${dicethrower}">
+
+                <div  th:each="diceThrow, stat : *{diceThrowerResultList}" >
+
+
+                    <hr th:if="${stat.size-1 == stat.index and dicethrower.calculateSum}">
+
+                    <b><span  th:utext="${diceThrow.mod}"></span></b>
+                    ( <span  th:utext="${diceThrow.raw}"></span> )
+
+                    <br>
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+</html>
